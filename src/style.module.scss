@@ -1,0 +1,19 @@
+.gameBox{
+    background-color: rgb(118, 225, 221);
+    color: white;
+    height: 15vh;
+    width: 15vh; 
+    border-radius: 4px;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    &:hover{
+        cursor: pointer; 
+    }  
+} 
+
+.gameRow{
+    display: flex; 
+    flex-direction: row;  
+}
