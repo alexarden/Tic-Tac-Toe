@@ -2,6 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import style from './style.module.scss';
 
+//TODO: Add end game logic and score system.
+
 function App() {
   const [player, setPlayer] = useState('X');
   const [game, setGame] = useState([['', '', ''], ['', '', ''], ['', '', '']]);
