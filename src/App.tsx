@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import style from './style.module.scss';
+import xImage from "./assets/x.png";
+import oImage from "./assets/o.png";
 
 //TODO: Add end game logic and score system.
-const O = <img src="src\assets\o.png" alt="Green circle" width="100" height="100"></img>  
-const X = <img src="src\assets\x.png" alt="Red X" width="100" height="100"></img>  
+const O = <img src={xImage} alt="Green circle" width="100" height="100"></img>  
+const X = <img src={oImage} alt="Red X" width="100" height="100"></img>   
 
 function App() {
   const [player, setPlayer] : any = useState(X); 
@@ -104,8 +106,8 @@ function App() {
 
     <div className="App">  
       <div className={style.scoreBoard}> 
-        <div style={{width: '50'}}>{<img src="./assets/x.png" alt="Green circle" width="20" height="20"></img>   }  {XScore}</div>   
-        <div style={{width: '50'}}>{<img src="./assets/o.png" alt="Green circle" width="20" height="20"></img>   }  {OScore}</div>     
+        <div style={{width: '50'}}>{<img src={xImage} alt="Green circle" width="20" height="20"></img>   }  {XScore}</div>   
+        <div style={{width: '50'}}>{<img src={oImage} alt="Green circle" width="20" height="20"></img>   }  {OScore}</div>      
       </div>
     { renderGame() }  
     </div>
