@@ -104,8 +104,8 @@ function App() {
 
     <div className="App">  
       <div className={style.scoreBoard}> 
-        <div style={{width: '50'}}>{<img src="src\assets\x.png" alt="Green circle" width="20" height="20"></img>   }  {XScore}</div>   
-        <div style={{width: '50'}}>{<img src="src\assets\o.png" alt="Green circle" width="20" height="20"></img>   }  {OScore}</div>     
+        <div style={{width: '50'}}>{<img src="./assets/x.png" alt="Green circle" width="20" height="20"></img>   }  {XScore}</div>   
+        <div style={{width: '50'}}>{<img src="./assets/o.png" alt="Green circle" width="20" height="20"></img>   }  {OScore}</div>     
       </div>
     { renderGame() }  
     </div>
