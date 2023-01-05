@@ -9,7 +9,8 @@ function App() {
   const [XScore, setXScore] = useState(0);
   const [OScore, setOScore] = useState(0);
   const [game, setGame] = useState([['', '', ''], ['', '', ''], ['', '', '']]);
-  const [gameOver, setGameOver] = useState(true)  
+  const [gameOver, setGameOver] = useState(false)   
+  const [winner, setWinner] = useState('X') 
 
   useEffect(() => {
     isGameOver()
@@ -28,19 +29,47 @@ function App() {
   }
 
   function isGameOver(){
+    console.log(game); 
+    
     for(let i = 0; i< game.length; i++){
       if(game[i].every(box => box === 'X')){
-        setXScore(prevScore => prevScore += 1)
+        setXScore(prevScore => prevScore + 1) 
         setGame(game => game = [['', '', ''], ['', '', ''], ['', '', '']])
+        setPlayer(player => player = 'X')
+        setWinner(winner => winner = 'X')
+        setGameOver(gameOver => gameOver = true) 
       }else if(game[i].every(box => box === 'O')){
-        setOScore(prevScore => prevScore += 1)
+        setOScore(prevScore => prevScore + 1)
         setGame(game => game = [['', '', ''], ['', '', ''], ['', '', '']])
-      }else if(game[0][i] && game[1][i] && game[2][i] === 'X'){
-        setXScore(prevScore => prevScore += 1)
+        setPlayer(player => player = 'X')
+        setWinner(winner => winner = 'O')
+        setGameOver(gameOver => gameOver = true)
+      }else if(game[0][i] === 'X' && game[1][i] === 'X' && game[2][i] === 'X'){ 
+        setXScore(prevScore => prevScore + 1)
         setGame(game => game = [['', '', ''], ['', '', ''], ['', '', '']])
-      }else if(game[0][i] && game[1][i] && game[2][i] === 'O'){
-        setOScore(prevScore => prevScore += 1)
+        setPlayer(player => player = 'X')
+        setWinner(winner => winner = 'X')
+        setGameOver(gameOver => gameOver = true)
+      }else if(game[0][i] === 'O' && game[1][i] === 'O' && game[2][i] === 'O'){ 
+        setOScore(prevScore => prevScore + 1)
+        setGame(game => game = [['', '', ''], ['', '', ''], ['', '', '']]) 
+        setPlayer(player => player = 'X')
+        setWinner(winner => winner = 'O')
+        setGameOver(gameOver => gameOver = true)
+      }else if(game[0][0] === 'X' && game[1][1] === 'X' && game[2][2] === 'X' || game[0][2] === 'X' && game[1][1] === 'X' && game[2][0] === 'X'){
+        setXScore(prevScore => prevScore + 1)
+        setGame(game => game = [['', '', ''], ['', '', ''], ['', '', '']]) 
+        setPlayer(player => player = 'X')
+        setWinner(winner => winner = 'X')
+        setGameOver(gameOver => gameOver = true)
+        break
+      }else if(game[0][0] === 'O' && game[1][1] === 'O' && game[2][2] === 'O' || game[0][2] === 'O' && game[1][1] === 'O' && game[2][0] === 'O'){
+        setOScore(prevScore => prevScore + 1)
         setGame(game => game = [['', '', ''], ['', '', ''], ['', '', '']])
+        setPlayer(player => player = 'X')
+        setWinner(winner => winner = 'O') 
+        setGameOver(gameOver => gameOver = true) 
+        break 
       } 
     }
   }
@@ -63,13 +92,18 @@ function App() {
     </div>
   }
 
+  function handleAgainClick(){
+    setGameOver(gameOver => gameOver = false); 
+  }
+
   return (
 
     gameOver ? 
     
       <div>
       <div className={style.gameOver}>Game Over</div>
-      <button className={style.newGameButton}>Again!</button>
+      <div className={style.winner}>{winner} Won!</div> 
+      <button className={style.newGameButton} onClick={handleAgainClick}>Again!</button>
       </div>
 
     
