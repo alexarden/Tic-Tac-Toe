@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import style from './style.module.scss';
 
@@ -6,7 +6,14 @@ import style from './style.module.scss';
 
 function App() {
   const [player, setPlayer] = useState('X');
+  const [XScore, setXScore] = useState(0);
+  const [OScore, setOScore] = useState(0);
   const [game, setGame] = useState([['', '', ''], ['', '', ''], ['', '', '']]);
+  const [gameOver, setGameOver] = useState(true)  
+
+  useEffect(() => {
+    isGameOver()
+  }) 
 
   function handleClick(e:any) {    
    let row = Number(e.target.classList[1].substring(4,5));  
@@ -18,6 +25,24 @@ function App() {
       return game  
     }); 
    } 
+  }
+
+  function isGameOver(){
+    for(let i = 0; i< game.length; i++){
+      if(game[i].every(box => box === 'X')){
+        setXScore(prevScore => prevScore += 1)
+        setGame(game => game = [['', '', ''], ['', '', ''], ['', '', '']])
+      }else if(game[i].every(box => box === 'O')){
+        setOScore(prevScore => prevScore += 1)
+        setGame(game => game = [['', '', ''], ['', '', ''], ['', '', '']])
+      }else if(game[0][i] && game[1][i] && game[2][i] === 'X'){
+        setXScore(prevScore => prevScore += 1)
+        setGame(game => game = [['', '', ''], ['', '', ''], ['', '', '']])
+      }else if(game[0][i] && game[1][i] && game[2][i] === 'O'){
+        setOScore(prevScore => prevScore += 1)
+        setGame(game => game = [['', '', ''], ['', '', ''], ['', '', '']])
+      } 
+    }
   }
  
   function renderBox(row:number ,col: number) {
@@ -40,8 +65,21 @@ function App() {
 
   return (
 
+    gameOver ? 
+    
+      <div>
+      <div className={style.gameOver}>Game Over</div>
+      <button className={style.newGameButton}>Again!</button>
+      </div>
+
+    
+    :
 
     <div className="App">
+      <div className={style.scoreBoard}>
+        <div>X : {XScore}</div>
+        <div>O : {OScore}</div> 
+      </div>
     { renderGame() }
     </div>
   )
