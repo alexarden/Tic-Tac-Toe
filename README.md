@@ -1,3 +1,5 @@
 # Tic-Tac-Toe
 
-tic-tac-toe-one-drab.vercel.app
+
+[Click to play!](https://tic-tac-toe-one-drab.vercel.app)
+
