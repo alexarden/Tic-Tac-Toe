@@ -1,3 +1,3 @@
 # Tic-Tac-Toe
 
-[Click to play!](tic-tac-toe-one-drab.vercel.app)
+tic-tac-toe-one-drab.vercel.app
